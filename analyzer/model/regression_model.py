@@ -2,7 +2,7 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.regression.linear_model import OLS
 from sklearn.linear_model import Lasso, Ridge, BayesianRidge
-from sklearn import svm
+from sklearn.svm import SVR
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.multioutput import MultiOutputRegressor
@@ -73,7 +73,7 @@ class RegressionModel:
 
     def SVR(self, X_train, X_test, y_train, y_test,
             kernel='rbf', C=1.0, epsilon=0.1):
-        model = MultiOutputRegressor(svm.SVR(kernel=kernel, C=C, epsilon=epsilon))
+        model = MultiOutputRegressor(SVR(kernel=kernel, C=C, epsilon=epsilon))
         model.fit(X_train, y_train)
         y_pred = pd.DataFrame(model.predict(X_test), columns=y_test.columns)
         return y_test, y_pred, model
