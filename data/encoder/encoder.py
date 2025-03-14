@@ -14,9 +14,9 @@ class Encoder:
 
     @staticmethod
     def labelEncoder(df_feature):
-        label_encoder = LabelEncoder()
-        df_feature_encoded = label_encoder.fit_transform(df_feature)
-        return df_feature_encoded
+        encoders = LabelEncoder()
+        df_feature_encoded = encoders.fit_transform(df_feature)
+        return df_feature_encoded, encoders
 
     @staticmethod
     def oneHotEncoder(X_train, X_test, columns_for_encoding):
